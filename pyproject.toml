@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atualizador-paineis"
+version = "0.1.0"
+description = "Aplicativo incremental para atualização de painéis Excel."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openpyxl>=3.1,<4",
+    "pandas>=2.2,<4",
+    "pywin32>=308; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pyinstaller>=6.12",
+    "pytest>=8.3",
+    "ruff>=0.9",
+]
+
+[project.gui-scripts]
+atualizador-paineis = "atualizador_paineis.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
