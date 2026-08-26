@@ -12,5 +12,3 @@ dados/paineis/
 dados/saida/
 *.spec
 *.exe
-*.xlsx
-~$*.xlsx
