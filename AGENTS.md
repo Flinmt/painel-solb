@@ -12,13 +12,16 @@
 - `config/paineis.toml` is the source of truth for panel globs, input/output directories, worksheet names, and table names; update it with module changes.
 - Shared cleaning, auditing, logging, artifacts, and Excel operations are in `src/atualizador_paineis/core/` and `src/atualizador_paineis/excel/`.
 - `atualizados/` holds the live workbooks. Operational inputs and generated outputs under `dados/` are ignored and may be unavailable in a fresh checkout.
+- In a frozen installation, writable operational data is rooted at `%LOCALAPPDATA%\SOLB\Atualizador SOLB`; bundled resources are read-only application files.
 - Comparativo requires Exames to run first in the same competence; it consumes `dados/saida/compartilhados/exames/exames-consolidado.xlsx` and validates its manifest/hash.
 
 ## Verification
 
 - Run checks in this order: `python -m pytest`, then `python -m ruff check src tests`.
 - Focus a test with `python -m pytest tests/unitarios/test_exames.py -q`; integration tests skip when required operational files are absent.
-- Build only through `.\build.ps1` in PowerShell; it installs dev dependencies, runs both checks, and invokes PyInstaller for `dist\Atualizador Exames`.
+- Build only through `.\build.ps1` in PowerShell; it installs dev dependencies, runs both checks, and invokes PyInstaller for `dist\Atualizador SOLB`.
+- Use `.\build.ps1 -Installer` after installing Inno Setup 6 to create `installer\output\Atualizador-SOLB-Setup.exe`.
+- The installer requires administrator elevation and installs binaries under `Program Files`; runtime data remains under the user's `%LOCALAPPDATA%`.
 - Close the target workbook in Excel before manually updating a panel; publishing rejects Excel lock files and refreshes pivots through COM.
 
 ## Style

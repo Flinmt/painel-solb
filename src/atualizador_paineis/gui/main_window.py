@@ -20,7 +20,7 @@ class MainWindow:
         self._build_widgets()
 
     def _configure_window(self) -> None:
-        self.root.title("Central de Atualização de Painéis")
+        self.root.title("Atualizador SOLB")
         self.root.geometry("900x680")
         self.root.minsize(780, 600)
         self.root.option_add("*Font", "{Segoe UI} 10")

@@ -1,9 +1,14 @@
 from __future__ import annotations
 
+import os
+import shutil
 import sys
 import tomllib
 from dataclasses import dataclass
 from pathlib import Path
+
+APP_DATA_DIRECTORY = Path("SOLB") / "Atualizador SOLB"
+PANEL_KEYS = ("agenda", "exames", "cirurgias", "atendimentos", "comparativo", "3cx")
 
 
 @dataclass(frozen=True, slots=True)
@@ -38,11 +43,32 @@ def project_root() -> Path:
 
 def workspace_root() -> Path:
     if getattr(sys, "frozen", False):
-        executable_dir = Path(sys.executable).resolve().parent
-        if executable_dir.name == "Atualizador Exames":
-            return executable_dir.parent
-        return executable_dir
+        local_app_data = Path.home() / "AppData" / "Local"
+        if sys.platform == "win32":
+            local_app_data = Path(os.environ.get("LOCALAPPDATA", local_app_data))
+        return local_app_data / APP_DATA_DIRECTORY
     return project_root()
+
+
+def initialize_workspace(root: Path | None = None) -> Path:
+    """Cria as pastas graváveis necessárias para uma execução instalada ou local."""
+    workspace = root or workspace_root()
+    for key in PANEL_KEYS:
+        config = load_panel_config(key)
+        for directory in (
+            config.panel_directory,
+            config.input_directory,
+            config.output_directory,
+        ):
+            (workspace / directory).mkdir(parents=True, exist_ok=True)
+    seed_directory = project_root() / "seed" / "atualizados"
+    panel_directory = workspace / "atualizados"
+    if seed_directory.exists() and seed_directory.resolve() != panel_directory.resolve():
+        for source in seed_directory.glob("*.xlsx"):
+            destination = panel_directory / source.name
+            if not destination.exists():
+                shutil.copy2(source, destination)
+    return workspace
 
 
 def load_panel_config(key: str, root: Path | None = None) -> PanelConfig:

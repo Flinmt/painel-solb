@@ -130,7 +130,22 @@ Para gerar o executável:
 .\build.ps1
 ```
 
-O executável será criado na raiz do projeto, pronto para localizar o painel nessa mesma pasta.
+O executável será criado em `dist\Atualizador SOLB`.
+
+Para gerar o instalador completo, instale o Inno Setup 6 e execute:
+
+```powershell
+.\build.ps1 -Installer
+```
+
+O instalador será criado em `installer\output\Atualizador-SOLB-Setup.exe`. Ele solicita permissão de
+administrador, instala o aplicativo em `Program Files`, cria os atalhos e inclui os painéis atuais.
+Python não precisa estar instalado no computador do usuário. O Microsoft Excel continua sendo
+obrigatório.
+
+Em uma instalação, os arquivos operacionais ficam em
+`%LOCALAPPDATA%\SOLB\Atualizador SOLB`; a pasta contém os painéis vigentes, entradas, backups,
+processados e logs.
 
 ## Inclusão de novos painéis
 

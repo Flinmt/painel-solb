@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 import shutil
 import warnings
+import winreg
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
@@ -51,6 +52,15 @@ class CellUpdate:
     row_index: int
     column_name: str
     value: Any
+
+
+def excel_is_available() -> bool:
+    """Verifica o registro COM do Excel sem iniciar uma instância do aplicativo."""
+    try:
+        with winreg.OpenKey(winreg.HKEY_CLASSES_ROOT, "Excel.Application\\CLSID"):
+            return True
+    except OSError:
+        return False
 
 
 def ensure_panel_is_closed(panel_path: Path) -> None:
