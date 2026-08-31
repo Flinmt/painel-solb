@@ -14,6 +14,7 @@ python -m PyInstaller `
     --onedir `
     --name "Atualizador SOLB" `
     --add-data "config;config" `
+    --add-data "assets;assets" `
     --add-data "atualizados;seed/atualizados" `
     --hidden-import "win32timezone" `
     src/atualizador_paineis/app.py

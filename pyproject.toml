@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "atualizador-paineis"
-version = "0.1.0"
+version = "0.2.0"
 description = "Aplicativo incremental para atualização de painéis Excel."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "openpyxl>=3.1,<4",
     "pandas>=2.2,<4",
+    "Pillow>=11.3,<13",
     "pywin32>=308; sys_platform == 'win32'",
 ]
 
@@ -37,4 +38,3 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
-

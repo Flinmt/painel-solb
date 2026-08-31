@@ -14,6 +14,7 @@ from typing import cast
 from atualizador_paineis.core.dates import MONTH_NAMES_PT_BR
 from atualizador_paineis.core.errors import ApplicationError
 from atualizador_paineis.core.models import Competence, PanelModule, RunRequest, RunResult
+from atualizador_paineis.gui.tutorial import open_tutorial, tutorial_available
 
 LOGGER = logging.getLogger(__name__)
 
@@ -119,6 +120,12 @@ class PanelTab(ttk.Frame):
             state="disabled",
         )
         self.open_folder_button.pack(side="left")
+        if tutorial_available(self.module.key):
+            ttk.Button(
+                buttons,
+                text="Tutorial",
+                command=lambda: open_tutorial(self, self.module.key),
+            ).pack(side="right")
 
         ttk.Separator(self).pack(fill="x", pady=(20, 10))
         ttk.Label(
