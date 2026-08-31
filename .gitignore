@@ -14,3 +14,4 @@ dados/paineis/
 dados/saida/
 *.spec
 *.exe
+/entrega/
