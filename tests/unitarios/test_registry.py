@@ -36,6 +36,7 @@ def test_agenda_is_registered_as_first_panel_tab() -> None:
         "cirurgias.xlsx",
     ]
     assert str(modules[4].input_specs[1].default_relative_path).endswith("exames-consolidado.xlsx")
+    assert not modules[4].input_specs[1].selectable
     assert [spec.default_filename for spec in modules[5].input_specs] == [
         "queue_performance.csv"
     ]

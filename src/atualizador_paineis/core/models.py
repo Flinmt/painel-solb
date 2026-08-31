@@ -15,6 +15,7 @@ class InputSpec:
     default_filename: str | None = None
     default_relative_path: Path | None = None
     file_patterns: tuple[str, ...] = ("*.xlsx",)
+    selectable: bool = True
 
 
 @dataclass(frozen=True, slots=True)

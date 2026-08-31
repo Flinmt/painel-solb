@@ -236,6 +236,7 @@ class ComparisonModule:
             "exames",
             "Exames consolidados",
             default_relative_path=EXAMS_SHARED_RELATIVE_PATH,
+            selectable=False,
         ),
         InputSpec("cirurgias", "Cirurgias", "cirurgias.xlsx"),
     )

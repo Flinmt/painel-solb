@@ -7,12 +7,19 @@ from atualizador_paineis.gui.tutorial import (
 )
 
 
-def test_tutorials_registered_for_agenda_and_exames() -> None:
+def test_tutorials_registered_for_supported_panels() -> None:
     assert tutorial_available("agenda")
     assert tutorial_available("exames")
-    assert not tutorial_available("cirurgias")
+    assert tutorial_available("cirurgias")
+    assert tutorial_available("atendimentos")
+    assert tutorial_available("comparativo")
+    assert tutorial_available("3cx")
     assert len(TUTORIALS["agenda"].steps) == 2
     assert len(TUTORIALS["exames"].steps) == 5
+    assert len(TUTORIALS["cirurgias"].steps) == 2
+    assert len(TUTORIALS["atendimentos"].steps) == 2
+    assert len(TUTORIALS["comparativo"].steps) == 1
+    assert len(TUTORIALS["3cx"].steps) == 3
 
 
 def test_each_tutorial_page_has_one_existing_image() -> None:

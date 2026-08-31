@@ -67,6 +67,7 @@ class PanelTab(ttk.Frame):
                 spec.label,
                 self.file_vars[spec.key],
                 lambda key=spec.key: self._select_input(key),
+                selectable=spec.selectable,
             )
 
         if getattr(self.module, "requires_competence", False):
@@ -144,12 +145,23 @@ class PanelTab(ttk.Frame):
         label: str,
         variable: tk.StringVar,
         command: object,
+        *,
+        selectable: bool = True,
     ) -> None:
         row = ttk.Frame(parent)
         row.pack(fill="x", pady=4)
         ttk.Label(row, text=label, width=18).pack(side="left")
-        ttk.Entry(row, textvariable=variable).pack(side="left", fill="x", expand=True, padx=8)
-        ttk.Button(row, text="Selecionar…", command=command).pack(side="right")
+        entry_state = "normal" if selectable else "readonly"
+        ttk.Entry(row, textvariable=variable, state=entry_state).pack(
+            side="left",
+            fill="x",
+            expand=True,
+            padx=8,
+        )
+        if selectable:
+            ttk.Button(row, text="Selecionar…", command=command).pack(side="right")
+        else:
+            ttk.Label(row, text="Gerado em Exames", style="Subtitle.TLabel").pack(side="right")
 
     def _discover_defaults(self) -> None:
         candidates = [

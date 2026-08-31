@@ -1,5 +1,5 @@
 #define AppName "Atualizador SOLB"
-#define AppVersion "0.2.0"
+#define AppVersion "0.3.0"
 #define AppPublisher "SOLB"
 #define AppExeName "Atualizador SOLB.exe"
 

@@ -55,7 +55,10 @@ TUTORIALS = {
     ),
     "exames": TutorialDefinition(
         title="Tutorial de Exames",
-        subtitle="Siga as cinco etapas abaixo para exportar e processar os exames.",
+        subtitle=(
+            "Exporte e processe os exames para atualizar este painel e gerar o consolidado "
+            "usado pelo Comparativo."
+        ),
         directory=Path("assets") / "tutorials" / "exames",
         steps=(
             TutorialStep(
@@ -83,10 +86,107 @@ TUTORIALS = {
             ),
             TutorialStep(
                 image_name="05-selecionar-arquivos.png",
-                title="5. Atualizar o painel",
+                title="5. Atualizar e gerar o consolidado",
                 instructions=(
                     "Na aba Exames, selecione os arquivos de Imagem, Laboratório, Terapia e "
-                    "Outros. Depois clique em Processar e atualizar painel."
+                    "Outros. Depois clique em Processar e atualizar painel. Esse processamento "
+                    "também gera automaticamente o arquivo consolidado utilizado pela aba "
+                    "Comparativo."
+                ),
+            ),
+        ),
+    ),
+    "cirurgias": TutorialDefinition(
+        title="Tutorial de Cirurgias",
+        subtitle="Exporte as cirurgias no BIODATA e carregue o arquivo no atualizador.",
+        directory=Path("assets") / "tutorials" / "cirurgias",
+        steps=(
+            TutorialStep(
+                image_name="01-exportar-cirurgias.png",
+                title="1. Exportar as cirurgias",
+                instructions=(
+                    "No BIODATA, primeiro abra Consultório > Cirurgias. Depois, informe o "
+                    "período desejado e exporte a tabela pelo ícone destacado."
+                ),
+            ),
+            TutorialStep(
+                image_name="02-selecionar-arquivo.png",
+                title="2. Atualizar o painel",
+                instructions=(
+                    "Na aba Cirurgias do atualizador, selecione o arquivo exportado no campo "
+                    "Cirurgias. Depois, clique em Processar e atualizar painel."
+                ),
+            ),
+        ),
+    ),
+    "atendimentos": TutorialDefinition(
+        title="Tutorial de Atendimentos",
+        subtitle="Exporte os atendimentos no BIODATA e carregue o arquivo no atualizador.",
+        directory=Path("assets") / "tutorials" / "atendimentos",
+        steps=(
+            TutorialStep(
+                image_name="01-exportar-atendimentos.png",
+                title="1. Exportar os atendimentos",
+                instructions=(
+                    "No BIODATA, primeiro abra Atendimento > Atendimentos. Depois, informe "
+                    "o período desejado e exporte a tabela pelo ícone destacado."
+                ),
+            ),
+            TutorialStep(
+                image_name="02-selecionar-arquivo.png",
+                title="2. Atualizar o painel",
+                instructions=(
+                    "Na aba Atendimentos do atualizador, selecione o arquivo exportado no "
+                    "campo Atendimentos. Depois, clique em Processar e atualizar painel."
+                ),
+            ),
+        ),
+    ),
+    "comparativo": TutorialDefinition(
+        title="Tutorial do Comparativo",
+        subtitle="Reúna os dados da mesma competência para consolidar os três painéis.",
+        directory=Path("assets") / "tutorials" / "comparativo",
+        steps=(
+            TutorialStep(
+                image_name="01-arquivos-comparativo.png",
+                title="1. Preparar os arquivos do Comparativo",
+                instructions=(
+                    "Primeiro, processe a aba Exames: ela gera o consolidado que o Comparativo "
+                    "utiliza automaticamente. Neste campo, o caminho é somente para leitura e "
+                    "não precisa ser selecionado. Informe apenas os arquivos de Atendimentos e "
+                    "Cirurgias da mesma competência e processe o painel."
+                ),
+            ),
+        ),
+    ),
+    "3cx": TutorialDefinition(
+        title="Tutorial do 3CX",
+        subtitle="Exporte o desempenho da fila no 3CX e carregue o relatório no atualizador.",
+        directory=Path("assets") / "tutorials" / "3cx",
+        steps=(
+            TutorialStep(
+                image_name="01-abrir-relatorio.png",
+                title="1. Abrir o relatório da fila",
+                instructions=(
+                    "No 3CX, acesse Admin > Relatórios e, em Estatísticas da Fila, abra "
+                    "Visão geral do Desempenho da Fila."
+                ),
+            ),
+            TutorialStep(
+                image_name="02-filtrar-exportar.png",
+                title="2. Filtrar e exportar o CSV",
+                instructions=(
+                    "Abra o filtro, informe o período desejado e confirme que a fila 8019 "
+                    "SOLB CALLCENTER está incluída. Depois, clique em Exportar CSV."
+                ),
+            ),
+            TutorialStep(
+                image_name="03-atualizar-painel.png",
+                title="3. Atualizar o painel",
+                instructions=(
+                    "Na aba 3CX, selecione o relatório CSV exportado e informe o mês e o ano "
+                    "correspondentes ao período do relatório. Depois, clique em Processar e "
+                    "atualizar painel."
                 ),
             ),
         ),
